@@ -10,7 +10,7 @@
 
 <body>
   <?php
-  require_once "../../view/clients/ViewContact.php";
+  require_once "../../view/client/ViewContact.php";
   require_once "../../model/clients/ModelContact.php";
   require_once "../../view/clients/ViewTemplate.php";
 
