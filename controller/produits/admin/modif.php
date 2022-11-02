@@ -1,15 +1,37 @@
+<?php
+session_start();
+
+if (isset($_SESSION['id']) && $_SESSION['role'] === "admin") {
+  $html = '<h1 class="text-center" ><u>interface administrateur</u></h1>';
+  $html .= '<h2 class="text-center" > Bonjour ' . $_SESSION['prenom'] . " " . $_SESSION['nom'] . "<h2>";
+} else {
+  var_dump($_SESSION['id']);
+  var_dump($_SESSION['role']);
+
+  // header('Location: connexion-DepotlisteDepots.php');
+  exit;
+}
+?>
 <!DOCTYPE html>
-
-<?php
-require_once "../../../view/head.php";
-require_once "../../../view/navabar.php"; ?>
 <html lang="fr">
-<?php
 
+
+<?php
+require_once "../../../view/head.php";?>
+<html lang="fr">
+  <body>
+    
+    
+    <?php
 require_once "../../../view/produits/admin/ViewProduit.php";
 require_once "../../../view/produits/admin/ViewTemplate.php";
-require_once "../../../model/produits/admin/ModelProduits.php";
+require_once "../../../model/produits/admin/ModelProduit.php";
+require_once "../../../view/navabar.php"; 
+?>
 
+
+  
+  <?php
 
 if (isset($_GET['id'])) {
       if (ModelProduit::voirProduit($_GET['id'])) {
@@ -29,3 +51,6 @@ if (isset($_GET['id'])) {
   }
 }
 ?>
+<?php ViewTemplate::footer() ?>
+</body>
+</html>

@@ -4,7 +4,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-      <a href="accueil.php" class="btn btn-info ">interface user</a>
+      <a href="admin.php" class="btn btn-info ">interface user</a>
  </li>
   
 

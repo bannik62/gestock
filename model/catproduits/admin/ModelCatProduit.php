@@ -36,14 +36,14 @@ class ModelCatProduit
 
   }
 
-  public static function ajoutCatProduit( $id,$type)
+  public static function ajoutCatProduit( $id ,$type=null)
   {
     $idcon = connexion();
     $requete = $idcon->prepare("
-      INSERT INTO type_pdt VALUES (?, :type )
+      INSERT INTO type_pdt VALUES ('null',':type' )
     ");
     return $requete->execute([
-      ':id' => $id,
+     ':id' => $id,
       ':nom' => $type,
   
     ]);
@@ -60,7 +60,7 @@ class ModelCatProduit
     ]);
   }
 
-  public static function modifCatProduit($id)
+  public static function modifCatProduit($id,$type)
   {
     $idcon = connexion();
     $requet = $idcon->prepare("
@@ -68,7 +68,7 @@ class ModelCatProduit
     ");
     return $requet->execute([
       ':id' => $id,
-      ':nom' => $type,
+      ':type' => $type,
     ]);
   }
 

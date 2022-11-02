@@ -158,14 +158,14 @@ class ViewUser
   {
   ?>
     <div class="container mt-5 p-2  border rounded border-dark  ">
-      <form class="col-md-6 offset-md-3" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" enctype="multipart/form-data">
+      <form class="col-md-6 offset-md-3" id="formconnect" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" enctype="multipart/form-data">
         <div class="form-group">
           <label for="login">Login : </label>
-          <input type="text" class="form-control" name="login" id="login">
+          <input type="text" class="form-control" name="login" id="login" required>
         </div>
         <div class="form-group">
           <label for="pass">Mot de passe : </label>
-          <input type="password" class="form-control" name="pass" id="pass">
+          <input type="password" class="form-control" name="pass" id="pass" required>
         </div>
         <button type="submit" name="connexion" class="btn btn-primary">Connexion</button>
         <button type="reset" name="annuler" class="btn btn-danger">Annuler</button>

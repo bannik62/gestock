@@ -46,19 +46,18 @@ class ModelProduit
     return $requete->fetch(PDO::FETCH_ASSOC);
   }
 
-  public static function ajoutProduit($id, $nom, $type, $photo, $description, $lat, $directeur)
+  public static function ajoutProduit($id, $nom, $type, $photo, $description)
   {
     $idcon = connexion();
     $requete = $idcon->prepare("
-    INSERT INTO `pdt`(`id`, `nom`, `type`, `photo`, `description`, `lat`, `directeur`) VALUES ('[$id]','[$nom]','[$type]','[$photo]','[$description]','[$lat]','$directeur]')");
+    INSERT INTO `pdt`(?, `nom`, `type`, `photo`, `description`, `lat`) VALUES ('[$id]','[$nom]','[$type]','[$photo]','[$description]')");
     return $requete->execute([
-      ':id' => $id,
+     
       ':nom' => $nom,
       ':type' => $type,
       ':photo' => $photo,
       ':description' => $description,
-      ':lat' => $lat,
-      ':directeur' => $directeur
+  
     ]);
   }
 
@@ -86,8 +85,7 @@ class ModelProduit
       ':type' => $type,
       ':photo' => $photo,
       ':description' => $description,
-      ':lat' => $lat,
-      ':directeur' => $directeur,
+
     ]);
   }
   /*

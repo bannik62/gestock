@@ -1,12 +1,8 @@
 
-.affiche{
-    border: solid 2px black;
-    width: 450px;
-    padding: 20px
-}
-p{
-    color:black ;
-    
-    
 
-}
+footer{
+    background-color: #34475E;
+    color: white;
+    position:absolute;
+    width: 100%;
+  }

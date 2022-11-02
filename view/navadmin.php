@@ -1,37 +1,68 @@
-
 <div class="container-liquid">
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
-  <a class="navbar-brand" href="#">StockOption</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <nav class="navbar navbar-expand-lg bg-primary navbar-dark   mb-5 p-2 justify-content-around flex-wrap ">
+    <a class="navbar-brand" href="#">StockOption  <i class="fa-solid fa-boxes-stacked"></i></a>
+    <!-- drop user -->
+    <div class=" m-2">
+      <div class="collapse navbar-collapse d-flex" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Utilisateur
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/controller/user/admin/liste.php">liste</a>
+                <a class="dropdown-item" href="../admin/ajout.php">ajout</a>
+              </div>
+            </div>
+      </div>
+    </div>
+    <!-- drop depot -->
+    <div class=" m-2">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dépot
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/controller/depots/admin/index.php">liste</a>
+          <a class="dropdown-item" href="../../depots/admin/ajout.php">ajout</a>
+        </div>
+      </div>
+    </div>
+    <!-- -</div>------------ -->
+    <div class=" m-2">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Categorie de produits
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/controller/catproduits/admin/index.php">liste</a>
+          <a class="dropdown-item" href="../../catproduits/admin/ajout.php">ajout</a>
+        </div>
+      </div>
+    </div>
+    <!-- ------------------- -->
+    <!-- <li class="nav-item">
+            <a class="nav-link" href="/controller/clients/index.php">Clients</a>
+          </li> -->
+    <div class=" m-2">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          produits
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/controller/produits/admin/index.php">liste</a>
+          <a class="dropdown-item" href="../../produits/admin/ajout.php">ajout</a>
+        </div>
+      </div>
+    </div>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-    <li class="nav-item active">
-      <li class="nav-item">
-        <a class="nav-link" href="/controller/user/admin/liste.php">Utilisateur</a>
-      </li>
-    <li class="nav-item active">
-      <li class="nav-item">
-        <a class="nav-link" href="/controller/depots/admin/index.php">Dépot</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/controller/catproduits/admin/index.php">Catégorie de produit </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/controller/produits/admin/index.php">Produits</a>
-      </li>
-      <!-- <li class="nav-item">
-        <a class="nav-link" href="/controller/clients/index.php">Clients</a>
-      </li> -->
-    </ul>
-    <ol class="breadcrumb m-2">
-      <li class="breadcrumb-item">
-      <a type="button" id="ajoute" class="breadcrumb-item ajoute" href="../user/ajout.php">Ajouts utillisateurs</a> <a href="#" id="closeajouts" class=" ms-5" ><i class="fa-solid fa-plus "></i></a>
-      <a type="button"  class="breadcrumb-item" href="../deconnexion.php">deconnexion &nbsp<i class="fa-solid fa-xmark "></i></a> 
-    </li>
-    </ol>
-  </div>
+
+    <div class=" m-2">
+          <a type="button" class="btn  btn-outline-dark" href="../deconnexion.php">deconnexion &nbsp<i class="fa-solid fa-xmark "></i></a>
+        </li>
+      </ol>
+    </div>
+</div>
 </nav>
 </div>

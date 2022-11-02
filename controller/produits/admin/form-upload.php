@@ -19,8 +19,8 @@ if (isset($_POST['valider'])) {
 ?>
 
 
-    <div class="custom-file form-group" >
-      <input type="file" name="photo" id="photo" class="m-1" value="<?= $Produit['photo']?>">
+    <div class="custom-file form-group ms-3 " >
+      <input type="file" name="photo" id="photo" class="m-1"  value="photo" ">
       <br><br>
     </div>
 

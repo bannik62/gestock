@@ -1,19 +1,52 @@
 <?php
 session_start();
+
+if (isset($_SESSION['id']) && $_SESSION['role'] === "admin") {
+    $html = '<h1 class="text-center" ><u>interface administrateur</u></h1>';
+    $html .= '<h2 class="text-center" > Bonjour ' . $_SESSION['prenom'] . " " . $_SESSION['nom'] . "<h2>";
+} else {
+    var_dump($_SESSION['id']);
+    var_dump($_SESSION['role']);
+
+    // header('Location: connexion-DepotlisteDepots.php');
+    exit;
+}
 ?>
 <!doctype html>
 <html lang="fr">
-<?php 
-require_once "../../../view/headadmin.php";
-require_once "../../../view/navuser.php"
-?>
+<?php require_once "../../../view/headadmin.php"; ?>
 
 <?php
-require_once "../../../view/depots/admin/ViewDepot.php";
-require_once "../../../view/depots/admin/ViewTemplate.php";
 
-require_once "ajout.php";
-ViewDepot::listeDepots();
- 
-?>
+
+if (isset($_SESSION['id']) && $_SESSION['role'] === "admin") {
+    $html = '<h1 class="text-center" ><u>interface administrateur</u></h1>';
+    $html .= '<h2 class="text-center" > Bonjour ' . $_SESSION['prenom'] . " " . $_SESSION['nom'] . "<h2>";
+} else {
+    var_dump($_SESSION['id']);
+    var_dump($_SESSION['role']);
+
+    // header('Location: connexion-user.php');
+    exit;
+} ?>
+
+<body>
+        <?php
+        require_once "../../../view/depots/admin/ViewTemplate.php";
+        ViewTemplate::menu();
+        ?>
+
+    <div class="container list " style="width:100% ;">
+
+        <?php
+        require_once "../../../view/depots/admin/ViewDepot.php";
+        require_once "../../../model/depots/admin/ModelDepot.php";
+        $liste = ModelDepot::listeDepots();
+        ViewDepot::listeDepots($liste);
+
+        ?>
+    </div>
+    <?php ViewTemplate::footer(); ?>
+</body>
+
 </html>

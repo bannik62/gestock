@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+require_once "../../view/headadmin.php";
 require_once "../../view/user/noneadmin/ViewUser.php";
 require_once "../../model/user/noneadmin/ModelUser.php";
 
@@ -16,14 +16,12 @@ if (isset($_SESSION['id']) && $_SESSION['role'] === 'user') {
 ?>
 <!doctype html>
 <html lang="fr">
-
-<?php
-require_once "../../view/headadmin.php";
-require_once "../../view/navabar.php";
-?>
-
 <body>
-  <h1 class="text-center">page de Connexion !!</h1>
+<?php
+require_once "../../view/user/noneadmin/ViewTemplate.php";
+ViewTemplate::menu()
+?>
+ <h1 class="text-center">Bienvenu veuillez vous connectez </h1>
 
   <?php
   include_once "../../view/user/noneadmin/ViewUser.php";
@@ -64,6 +62,11 @@ require_once "../../view/navabar.php";
   }
 
   ?>
+  <?php
+require_once "../../view/user/noneadmin/ViewTemplate.php";
+ViewTemplate::footer()
+?>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
 
 </body>
 

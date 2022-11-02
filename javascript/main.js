@@ -1,17 +1,27 @@
 
-console.log($("#afficheinscris"));
-console.log( $("#ajoute"));
+$().ready(function () {
+  $("#formconnect").validate({
+    rules: {
+      login: {
+        required: true,
+        minlength: 3
 
-$(document).ready(function(){
-  console.log("hello world");
-  
-  $("#afficheinscris").hide()
-   
-   
-   $("#ajoute").click(function(){
+      },
+      pass: {
+        required: true,
+        minlength: 3
 
-        $("#afficheinscris").toggle();
-    });
+      },
 
-    
+    },
+    messages: {
+      login: "Le mot login et trop court",
+      pass: "Veuillez fournir un nom d'au moins trois lettres",
+    }
   });
+});
+
+function ecris() {
+  console.log('document.getElementById("#formconnect")');
+  
+}

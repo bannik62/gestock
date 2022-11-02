@@ -71,7 +71,7 @@ class ModelUser
      
        INSERT INTO user VALUES (null,:nom , :prenom ,:login, :pass, :role)  
    ");
-    $test = $requete->execute(
+    $requete = $requete->execute(
       [
 
         ':login' => $login,
@@ -83,7 +83,7 @@ class ModelUser
       ]
     );
  
-    return $test;
+    return $requete;
   }
 
   public static function suppUser($id)
@@ -100,7 +100,7 @@ class ModelUser
   public static function modifUser($id, $nom, $prenom, $login, $pass, $role)
   {
     $idcon = connexion();
-    $requet = $idcon->prepare("
+    $requete = $idcon->prepare("
     UPDATE `user` SET `id`='[:id]',`nom`='[:nom]',`prenom`='[:prenom]',`login`='[:login]',`pass`='[:pass]',`role`='[:role]' WHERE `id`='[:id]'    ");
     return $requet->execute([
       ':nom' => $nom,

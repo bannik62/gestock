@@ -1,7 +1,7 @@
 
 <?php
 session_start();
-require_once "../../../model/catproduits/ModelCatProduit.php";
+require_once "../../../model/catproduits/noneadmin/ModelCatProduit.php";
 class ViewCatProduit 
 {
   public  static function listeCatProduit()

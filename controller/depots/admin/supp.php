@@ -6,19 +6,19 @@
 
   <?php
    session_start();
-  require_once "../../view/depots/ViewDepot.php";
-  require_once "../../model/depots/ModelDepot.php";
-  require_once "../../view/depots/ViewTemplate.php";
+  require_once "../../../view/depots/admin/ViewDepot.php";
+  require_once "../../../model/depots/admin/ModelDepot.php";
+  require_once "../../../view/depots/admin/ViewTemplate.php";
 
   ViewTemplate::menu();
   
   if (isset($_GET['id'])) {
     if (ModelDepot::voirDepot($_GET['id'])) {
-      if (ModelDepot::suppDepot($_GET['id'])) {
-        header('Location: liste.php');
+      if (ModelDepot::suppDepot($_GET['id'])) { 
+        header('Location: index.php');
         exit;
       } else {
-        ViewTemplate::alert("danger", "erreur de requete", "liste.php");
+        ViewTemplate::alert("danger", "erreur de requete", "index.php");
 
       }
     } else {

@@ -1,5 +1,5 @@
 <?php
-require_once "../../../model/produits/admin/ModelProduits.php";
+require_once "../../../model/produits/admin/ModelProduit.php";
 
 class ViewProduit
 {
@@ -7,7 +7,7 @@ class ViewProduit
   {
     $liste = ModelProduit::listeProduit();
 ?>
-    <div class="container">
+    <div class="card">
       <?php
       if ($liste) {
       ?>
@@ -93,7 +93,7 @@ class ViewProduit
   {
     $Produit = ModelProduit::voirProduit($id);
     ?>
-    <form class="col-md-6 offset-md-3" method="post" action="modif.php" >
+    <form class="col-md-6 offset-md-3" method="post" action="modif.php">
       <input type="hidden" class="form-control" name="id" id="id" value="<?= $Produit['id'] ?>">
       <div class="form-group">
         <label for="nom">Nom : </label>
@@ -111,46 +111,47 @@ class ViewProduit
         <input type="" class="form-control" name="photo" id="photo" value="">
       </div> -->
       <?php require_once "form-upload.php" ?>
-<form action="" method="post" enctype="multipart/form-data">
-      <div class="form-group">
-        <label for="description">Déscription : </label>
-        <input type="description" class="form-control" name="description" id="description" value="<?= $Produit['description'] ?>">
-      </div>
-</form>
+      <form action="" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="description">Déscription : </label>
+          <input type="description" class="form-control" name="description" id="description" value="<?= $Produit['description'] ?>">
+        </div>
 
-      <button type="submit" class="btn btn-info" name="modif" id="modif">Modifier</button>
-      <button type="reset" class="btn btn-danger">Réinitialiser</button>
-    </form>
 
-  <?php
+        <button type="submit" class="btn btn-info" name="modif" id="modif">Modifier</button>
+        <button type="reset" class="btn btn-danger">Réinitialiser</button>
+      </form>
+
+    <?php
   }
 
   public static function ajoutProduit()
   { ?>
-    <form class="col-md-6 offset-md-3" method="post" action="<?php htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-      <div class="form-group">
-        <label for="nom">Nom : </label>
-        <input type="text" class="form-control" name="nom" id="nom">
-      </div>
-      <div>
-        <select name="type" id="type" class=" m-3">
-          <option value="#"> --type produit-- </option>
-          <option value="1">jeux video</option>
-          <option value="2">hi-fi</option>
-        </select>
-      </div>
-      <div>
-        <?php require_once "../../controller/produits/form-upload.php" ?>
-      </div>
-      <div class="form-group">
-        <label for="description">description: </label>
-        <input type="description" class="form-control" name="description" id="description">
-      </div>
+      <div class="card d-flex mx-auto  "style="width: 500px;" >
+        <form class=" p-1" method="post" action="<?php htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+          <div class="form-group">
+            <label for="nom">Nom : </label>
+            <input type="text" class="form-control" name="nom" id="nom">
+          </div>
+          <div>
+            <select name="type" id="type" class=" m-3">
+              <option value="#"> --type produit-- </option>
+              <option value="1">jeux video</option>
+              <option value="2">hi-fi</option>
+            </select>
+          </div>
+          <div>
+            <?php require_once "../../../controller/produits/admin/form-upload.php" ?>
+          </div>
+          <div class="form-group mb-2">
+            <label for="description">description: </label>
+            <input type="description" class="form-control" name="description" id="description">
+          </div>
 
-      <button type="submit" class="btn btn-primary" name="ajout" id="ajout">Ajouter</button>
-      <button type="reset" class="btn btn-danger">Réinitialiser</button>
-    </form>
-
-<?php
+          <button type="submit" class="btn btn-primary" name="ajout" id="ajout">Ajouter</button>
+          <button type="reset" class="btn btn-danger">Réinitialiser</button>
+        </form>
+      </div>
+  <?php
   }
 }

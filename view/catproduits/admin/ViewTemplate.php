@@ -4,40 +4,36 @@ class ViewTemplate
 {
   public static function menu()
   { ?>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
-      <div class="container">
-        <a class="navbar-brand" href="liste.php">Contacts</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="liste.php">Liste</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="ajout.php">Ajouter</a>
-            </li>
+   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">  
+    <a class="navbar-brand ms-1" href="#">StockOption  <i class="fa-solid fa-boxes-stacked"></i></a>
 
-          </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
-        </div>
-      </div>
-    </nav>
+
+<div class="collapse navbar-collapse ms-5" id="navbarSupportedContent">
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+    <a href="/controller/user/admin/admin.php" class="btn btn-info ">interface user</a>
+</li>
+
+
+</div>
+</nav>
   <?php
   }
 
 
   public static function footer()
   { ?>
-    <div class="bg-dark py-4 mt-5 text-center text-light h3">
-      <div class="container">
-        copyright &copy; <?= date("Y") ?>
-      </div>
-    </div>
+    <footer>
+      <div class="bg-primary py-3 m-0 text-center text-light h3">
+        <div class="container">
+          Gestock copyright &copy; <?= date("Y") ?>
+        </div>
+             <div>
+          <p> Utilisateur : </p><?php echo  $_SESSION['prenom'] ." ". $_SESSION['nom']; ?>
+        </div>
+      </div> 
+
+    </footer>
   <?php
   }
 

@@ -1,3 +1,5 @@
+
+
 <?php
 session_start();
 
@@ -19,11 +21,9 @@ if (isset($_SESSION['id']) && $_SESSION['role'] === "admin") {
 <?php include_once "../../../view/navadmin.php" ?>
 <?php include_once "../../../view/user/admin/ViewTemplate.php" ?>
 
-<?php
-echo $html;
-?>
 
-<div>
+
+<div style=" height : 200px" >
   <p class="text-center m-3">Application de Gestion des Stocks et Clients </p>
 </div>
 

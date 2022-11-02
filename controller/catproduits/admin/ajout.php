@@ -1,35 +1,34 @@
 <!doctype html>
 <html lang="fr">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ajout de viewCatProduit</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-</head>
+<?php require_once "../../../view/headadmin.php";
+?>
 
 <body>
-  <?php
-  require_once "../../view/catproduits/ViewCatProduit.php";
-  require_once "../../model/catProduits/ModelCatProduit.php";
-  require_once "../../view/catProduits/ViewTemplate.php";
 
- 
-  if(isset($_POST['ajout'])){
-    if(ModelCatProduit::ajoutCatProduit($_POST['id'],$_POST['type'])) {
+  <?php
+  require_once "../../../view/catProduits/admin/ViewTemplate.php";
+  ViewTemplate::menu()
+  ?>
+
+<div class="card d-flex justify-content-center mx-auto m-3 " style="width:500px ;height: 370px;" >
+  <?php
+  require_once "../../../view/catproduits/admin/ViewCatProduit.php";
+  require_once "../../../view/catProduits/admin/ViewTemplate.php";
+
+  if (isset($_POST['ajout'])) {
+    if (ModelCatProduit::ajoutCatProduit($_POST['type'])) {
       ViewTemplate::alert("success", "insertion faite avec succes", "liste.php");
-    }
-    else {
+    } else {
       ViewTemplate::alert("danger", "echec de l'insertion", "ajout.php");
     }
-  }
-  else {
+  } else {
     ViewCatProduit::ajoutCatProduit();
   }
-  
-  ViewTemplate::footer();
   ?>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</div>
+  <?php ViewTemplate::footer();
+  ?>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
 </body>
 
 </html>

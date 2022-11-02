@@ -1,14 +1,13 @@
-
 <?php
 session_start();
 require_once "../../../model/catproduits/admin/ModelCatProduit.php";
-class ViewCatProduit 
+class ViewCatProduit
 {
   public  static function listeCatProduit()
   {
     $liste = ModelCatProduit::listeCatProduit();
 ?>
-    <div class="container ">
+    <div class="card  my-5 ">
       <?php
       if ($liste) {
       ?>
@@ -17,7 +16,8 @@ class ViewCatProduit
             <tr>
               <th scope="col">Id</th>
               <th scope="col">type</th>
-         
+              <th scope="col">&nbsp &nbsp Action</th>
+
             </tr>
           </thead>
           <tbody>
@@ -31,10 +31,10 @@ class ViewCatProduit
               <tr>
                 <th scope="row"><?= $valeur['id'] ?></th>
                 <td><?= $valeur['type'] ?></td>
-            
+
                 <td>
-                  <a href="voir.php?id=<?= $valeur['id'] ?>" class="btn-sm btn-primary">Voir</a>
-                  <a href="supp.php?id=<?= $valeur['id'] ?>" class="btn-sm btn-danger">Supprimer</a>
+                  <a href="voir.php?id=<?= $valeur['id'] ?>" class="btn btn-primary">Voir</a>
+                  <a href="supp.php?id=<?= $valeur['id'] ?>" class="btn btn-danger">Supprimer</a>
                 </td>
               </tr>
             <?php
@@ -106,22 +106,12 @@ class ViewCatProduit
   { ?>
     <form class="col-md-6 offset-md-3" method="post" action="<?php htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
       <div class="form-group">
-        <label for="nom">Nom : </label>
-        <input type="text" class="form-control" name="nom" id="nom">
+        <input type="hidden" class="form-control" name="id" id="id">
       </div>
       <div class="form-group">
-        <label for="prenom">Prenom : </label>
-        <input type="text" class="form-control" name="prenom" id="prenom">
+        <label for="prenom">Type : </label>
+        <input type="text" class="form-control" name="type" id="type">
       </div>
-      <div class="form-group">
-        <label for="mail">Adresse mail : </label>
-        <input type="email" class="form-control" name="mail" id="mail">
-      </div>
-      <div class="form-group">
-        <label for="tel">téléphone : </label>
-        <input type="tel" class="form-control" name="tel" id="tel">
-      </div>
-
       <button type="submit" class="btn btn-primary" name="ajout" id="ajout">Ajouter</button>
       <button type="reset" class="btn btn-danger">Réinitialiser</button>
     </form>

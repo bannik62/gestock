@@ -8,7 +8,7 @@ class ViewDepot
   {
     $liste = ModelDepot::listeDepots();
 ?>
-    <div class="container">
+    <div class="card my-5">
       <?php
       if ($liste) {
       ?>
@@ -43,8 +43,8 @@ class ViewDepot
                 <td><?= $_SESSION['id'] ?></td>
 
                 <td>
-                  <a href="voir.php?id=<?= $valeur['id'] ?>" class="btn-sm btn-info text-white">Voir</a>
-                  <a href="supp.php?id=<?= $valeur['id'] ?>" class="btn-sm btn-danger">Supprimer</a>
+                  <a href="voir.php?id=<?= $valeur['id'] ?>" class="btn btn-info text-white">Voir</a>
+                  <a href="supp.php?id=<?= $valeur['id'] ?>" class="btn btn-danger">Supprimer</a>
                 </td>
               </tr>
             <?php
@@ -98,7 +98,7 @@ class ViewDepot
 
   public static function modifDepot($id)
   {
-    $Depot = ModelDepot::voirDepot($id, $_SESSION['id']);
+    $Depot = ModelDepot::modifDepot($id, $_SESSION['id']);
 
     ?>
     session-start();
@@ -139,7 +139,7 @@ class ViewDepot
   {
 
   ?>
-
+<div class="card m-5 ">
     <form class="col-md-6 offset-md-3" method="post" action="<?php htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
       <div class="form-group">
         <label for="nom">Nom : </label>
@@ -151,14 +151,14 @@ class ViewDepot
       </div>
       <div class="form-group">
         <label for="code_post">code postal : </label>
-        <input type="txt" class="form-control" name="code_post " id="code_post">
+        <input type="txt" class="form-control" name="code_post" id="code_post">
       </div>
       <div class="form-group">
-        <label for="tel">Longitude: </label>
-        <input type="txt" class="form-control" name="longit" id="longit">
+        <label for="longi">Longitude: </label>
+        <input type="txt" class="form-control" name="longi" id="longi">
       </div>
       <div class="form-group">
-        <label for="tel">latitude : </label>
+        <label for="lat">latitude : </label>
         <input type="txt" class="form-control" name="lat" id="lat">
       </div>
       <div class="form-group">
@@ -168,6 +168,7 @@ class ViewDepot
       <button type="submit" class="btn btn-primary" name="ajout" id="ajout">Ajouter</button>
       <button type="reset" class="btn btn-danger">Réinitialiser</button>
     </form>
+  </div>
 <?php
   }
 }

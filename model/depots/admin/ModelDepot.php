@@ -9,18 +9,18 @@ class ModelDepot
   private $nom;
   private $ville;
   private $code_post;
-  private $longit;
+  private $longi;
   private $lat;
   private $directeur;
 
-  public function __construct($id = null, $nom = null, $ville = null, $code_post = null, $longit = null, $lat = null, $directeur = null)
+  public function __construct($id = null, $nom = null, $ville = null, $code_post = null, $longi = null, $lat = null, $directeur = null)
   {
     // manipulation des parametres ajouts des valeurs
     $this->id =        $id;
     $this->nom =       $nom;
     $this->ville =     $ville;
     $this->code_post = $code_post;
-    $this->longit =    $longit;
+    $this->longi =     $longi;
     $this->lat =       $lat;
     $this->directeur = $directeur;
   }
@@ -48,17 +48,17 @@ class ModelDepot
     return $requete->fetch(PDO::FETCH_ASSOC);
   }
 
-  public static function ajoutDepot($id, $nom, $ville, $code_post, $longit, $lat, $directeur)
+  public static function ajoutDepot($nom, $ville, $code_post, $longi, $lat, $directeur)
   {
     $idcon = connexion();
     $requete = $idcon->prepare("
-    INSERT INTO `depot`(`id`, `nom`, `ville`, `code_post`, `longit`, `lat`, `directeur`) VALUES ('[$id]','[$nom]','[$ville]','[$code_post]','[$longit]','[$lat]','$directeur]')");
+    INSERT INTO depot VALUES (null, :nom,:ville,:code_post,:longi,:lat,:directeur)");
     return $requete->execute([
-      ':id' => $id,
+
       ':nom' => $nom,
       ':ville' => $ville,
       ':code_post' => $code_post,
-      ':longit' => $longit,
+      ':longi' => $longi,
       ':lat' => $lat,
       ':directeur' => $directeur
     ]);
@@ -75,29 +75,26 @@ class ModelDepot
     ]);
   }
 
-  public static function modifDepot($id = null, $nom = null, $ville = null, $code_post = null, $longit = null, $lat = null, $directeur = null)
+  public static function modifDepot($id = null, $nom = null, $ville = null, $code_post = null, $longi = null, $lat = null, $directeur = null)
   {
     $idcon = connexion();
-    $requet = $idcon->prepare("
-    UPDATE depot SET id=:id ,nom=:nom, ville=:ville, code_post=:code_post, longit=:longit ,lat=:lat, directeur=:directeur WHERE id = :id
+    $requete = $idcon->prepare("
+    UPDATE depot SET id=:id ,nom=:nom, ville=:ville, code_post=:code_post, longi=:longi ,lat=:lat, directeur=:directeur WHERE id = :id
 
     ");
-    return $requet->execute([
+    return $requete->execute([
       ':id' => $id,
       ':nom' => $nom,
       ':ville' => $ville,
       ':code_post' => $code_post,
-      ':longit' => $longit,
+      ':longit' => $longi,
       ':lat' => $lat,
       ':directeur' => $directeur,
     ]);
   }
-  /*
-  
+  /*  
   GETTERS ET SETTERS
-
   */
-
   public function getId()
   {
     return $this->id;
@@ -120,18 +117,18 @@ class ModelDepot
 
   public function getlongit()
   {
-    return $this->longit;
+    return $this->longi;
   }
 
-  public function getlat($lat)
+  public  function getlat()
   {
     $this->$lat;
     return $this;
   }
 
-  public function setNom($description)
+  public function setDirecteur()
   {
-    $this->$description;
+    $this->$directeur;
     return $this;
   }
 }
