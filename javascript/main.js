@@ -21,7 +21,9 @@ $().ready(function () {
   });
 });
 
-function ecris() {
-  console.log('document.getElementById("#formconnect")');
-  
-}
+
+if (isset($_SESSION['id']) && $_SESSION['role'] === "directeur") {
+  let  cache = document.getElementById("hide");
+ 
+ }
+

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION['id']) && $_SESSION['role'] === "admin") {
+if (isset($_SESSION['id']) && ($_SESSION['role'] === "admin" | $_SESSION['role'] === "directeur")) {
   $html = '<h1 class="text-center" ><u>interface administrateur</u></h1>';
   $html .= '<h2 class="text-center" > Bonjour ' . $_SESSION['prenom'] . " " . $_SESSION['nom'] . "<h2>";
 } else {

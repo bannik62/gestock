@@ -10,9 +10,9 @@
 
 <body>
   <?php
-  require_once "../view/catproduits/ViewCatProduit.php";
-  require_once "../model/catproduits/ModelCatProduit.php";
-  require_once "../view/catproduits/ViewTemplate.php";
+  require_once "../../../view/catproduits/admin/ViewCatProduit.php";
+  require_once "../../../model/catproduits/admin/ModelCatProduit.php";
+  require_once "../../../view/catproduits/admin/ViewTemplate.php";
 
   ViewTemplate::menu();
   
@@ -22,7 +22,7 @@
         header('Location: liste.php');
         exit;
       } else {
-        ViewTemplate::alert("danger", "erreur de requete", "liste.php");
+        ViewTemplate::alert("danger", "erreur de requete", "index.php");
 
       }
     } else {

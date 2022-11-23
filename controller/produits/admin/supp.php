@@ -32,7 +32,7 @@ var_dump($_GET['id']);
   if (isset($_GET['id'])) {
     if (ModelProduit::voirProduit($_GET['id'])) {
       if (ModelProduit::suppProduit($_GET['id'])) {
-        header('Location: index.php');
+        ViewTemplate::alert("success", "insertion faite avec succes", "index.php");
         exit;
       } else {
         ViewTemplate::alert("danger", "erreur de requete", "index.php");

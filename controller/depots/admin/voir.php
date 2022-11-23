@@ -9,7 +9,7 @@
    session_start();
   require_once "../../../view/depots/admin/ViewDepot.php";
   require_once "../../../view/depots/admin/ViewTemplate.php";
- 
+  ViewTemplate::menu();
 
 
   if (isset($_GET['id'])) {

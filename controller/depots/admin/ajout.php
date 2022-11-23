@@ -22,7 +22,7 @@ session_start()
     if (ModelDepot::ajoutDepot( $_POST['nom'], $_POST['ville'], $_POST['code_post'],  $_POST['longi'], $_POST['lat'], $_POST['directeur'])) {
       ViewTemplate::alert("success", "insertion faite avec succes", "index.php");
     } else {
-      ViewTemplate::alert("danger", "echec de l'insertion", "ajout.php");
+      ViewTemplate::alert("danger", "echec de l'insertion", "index.php");
     }
   }
   else {

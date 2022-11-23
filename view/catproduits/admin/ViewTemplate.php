@@ -1,5 +1,6 @@
 <?php
 
+
 class ViewTemplate
 {
   public static function menu()
@@ -11,7 +12,7 @@ class ViewTemplate
 <div class="collapse navbar-collapse ms-5" id="navbarSupportedContent">
   <ul class="navbar-nav mr-auto">
     <li class="nav-item active">
-    <a href="/controller/user/admin/admin.php" class="btn btn-info ">interface user</a>
+    <a href="/controller/user/admin/admin.php" class="btn btn-secondary  ">interface user</a>
 </li>
 
 

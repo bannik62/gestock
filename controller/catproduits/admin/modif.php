@@ -6,16 +6,16 @@ require_once "../../../view/headadmin.php";
 
 <body>
   <?php
-  require_once "../../../view/navabar.php";
-  require_once "../../../view/catproduits/admin/ViewCatProduit.php";
   require_once "../../../view/catproduits/admin/ViewTemplate.php";
+  ViewTemplate::menu();
+  require_once "../../../view/catproduits/admin/ViewCatProduit.php";
   require_once "../../../model/catproduits/admin/ModelCatProduit.php";
 
   if (isset($_GET['id'])) {
     if (ModelCatProduit::voirCatProduit($_GET['id'])) {
       ViewCatProduit::modifCatProduit($_GET['id']);
     } else {
-      echo "ce CatProduit n'existe pas";
+      echo "cette categorie n'existe pas";
     }
   } else {
     if (isset($_POST['id']) && ModelCatProduit::voirCatProduit($_POST['id'])) {

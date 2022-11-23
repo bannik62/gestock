@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION['id']) && $_SESSION['role'] === "admin") {
+if (isset($_SESSION['id']) && ($_SESSION['role'] === "admin" | $_SESSION['role'] === "directeur")) {
   $html = '<h1 class="text-center" ><u>interface administrateur</u></h1>';
   $html .= '<h2 class="text-center" > Bonjour ' . $_SESSION['prenom'] . " " . $_SESSION['nom'] . "<h2>";
 } else {
@@ -26,16 +26,17 @@ if (isset($_SESSION['id']) && $_SESSION['role'] === "admin") {
   require_once "../../../view/produits/admin/ViewProduit.php";
   require_once "../../../model/produits/admin/ModelProduit.php";
   require_once "../../../view/produits/admin/ViewTemplate.php";
+  require_once "../../../model/produits/admin/Utils.php";
 
   if (isset($_POST['ajout'])) {
-    if (ModelProduit::ajoutProduit($_POST['nom'], $_POST['type'],  $_POST['photo'], $_POST['description'])) {
-      ViewTemplate::alert("success", "insertion faite avec succes", "liste.php");
+    if (ModelProduit::ajoutProduit($_POST['nom'], $_POST['type'],$_FILES["photo"]["name"], $_POST['description'])) {
+      ViewTemplate::alert("success", "insertion faite avec succes", "index.php");
     } else {
-      ViewTemplate::alert("danger", "echec de l'insertion", "ajout.php");
+      ViewTemplate::alert("danger", "echec de l'insertion", "index.php");
     }
-  } else {
+  } 
     ViewProduit::ajoutProduit();
-  }
+  
   ?>
   <?php
   require_once "../../../view/produits/admin/ViewTemplate.php";

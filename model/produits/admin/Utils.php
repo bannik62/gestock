@@ -28,18 +28,19 @@ class Utils
       $errors .= "extension non autorisée. <br/>";
     }
 
-    if ($file_size > 3000000) {
-      $errors .= "taille du fichier ne doit pas dépasser 3 Mo. <br/>";
+    if ($file_size > 7000000) {
+      $errors .= "taille du fichier ne doit pas dépasser 7 Mo. <br/>";
     }
 
-    $file_name = substr(    md5($fichier['name']) , 10) . ".$file_ext";
+    // $file_name = substr(md5($fichier['name']) , 10) . ".$file_ext";
 
-    while (file_exists("images/$file_name")) {
-      $file_name = substr(md5($file_name), 10) . ".$file_ext";
-    }
+    // while (file_exists("images/$file_name")) {
+    //   $file_name = substr(md5($file_name), 10) . ".$file_ext";
+    // }
+    
 
     if ($errors === "") {
-      if (move_uploaded_file($file_tmp,  "images/" . $file_name)) {
+      if (move_uploaded_file($file_tmp,  "../../../img/" . $fichier['name'])) {
         $uploadOk = true;
       } else {
         $errors .= "Echec de l'upload. <br/>";

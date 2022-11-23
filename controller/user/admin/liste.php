@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION['id']) && $_SESSION['role'] === "admin") {
+if (isset($_SESSION['id']) && ($_SESSION['role'] === "admin" ||  $_SESSION['role']=== "directeur")) {
   $html = '<h1 class="text-center" ><u>interface administrateur</u></h1>';
   $html .= '<h2 class="text-center" > Bonjour ' . $_SESSION['prenom'] . " " . $_SESSION['nom'] . "<h2>";
 } else {
@@ -11,7 +11,7 @@ if (isset($_SESSION['id']) && $_SESSION['role'] === "admin") {
   // header('Location: connexion-user.php');
   exit;
 }
-
+ 
 ?>
 <!doctype html>
 <html lang="fr">
@@ -20,7 +20,7 @@ if (isset($_SESSION['id']) && $_SESSION['role'] === "admin") {
 <body>
   <?php
   require_once "../../../view/user/admin/ViewTemplate.php";
-  ViewTemplate::menu();; ?>
+  ViewTemplate::menu();?>
   <div class="container list " style="width:100% ;">
 
     <?php

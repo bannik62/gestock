@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION['id']) && $_SESSION['role'] === "admin") {
+if (isset($_SESSION['id']) && ($_SESSION['role'] === "admin" ||  $_SESSION['role']=== "directeur")) {
   $html = '<h1 class="text-center" ><u>interface administrateur</u></h1>';
   $html .= '<h2 class="text-center" > Bonjour ' . $_SESSION['prenom'] . " " . $_SESSION['nom'] . "<h2>";
 } else {
@@ -23,29 +23,31 @@ if (isset($_SESSION['id']) && $_SESSION['role'] === "admin") {
   require_once "../../../view/user/admin/ViewTemplate.php";
   ViewTemplate::menu()
   ?>
-  <div class="border border-1 border-dark" style="height:500px;" >
-  <?php
-  require_once "../../../view/user/admin/ViewUser.php";
-  require_once "../../../model/user/admin/ModelUser.php";
-  require_once "../../../view/user/admin/ViewTemplate.php";
 
-  if (isset($_POST['ajout'])) {
-    if (ModelUser::ajoutUser($_POST['nom'], $_POST['prenom'], $_POST['login'],  $_POST['pass'],   $_POST['role'])) {
-      ViewTemplate::alert("success", "insertion faite avec succes", "liste.php");
+    <?php
+    require_once "../../../view/user/admin/ViewUser.php";
+    require_once "../../../model/user/admin/ModelUser.php";
+    require_once "../../../view/user/admin/ViewTemplate.php";
+
+    if (isset($_POST['ajout'])) {
+      $pass =  password_hash($_POST['pass'], PASSWORD_DEFAULT);
+      var_dump($_POST['pass']);
+      if (ModelUser::ajoutUser($_POST['nom'], $_POST['prenom'], $_POST['login'],  $pass,   $_POST['role'])) {
+        var_dump($_POST['pass']);
+
+        ViewTemplate::alert("success", "insertion faite avec succes", "liste.php");
+      } else {
+        ViewTemplate::alert("danger", "echec de l'insertion", "liste.php");
+      }
     } else {
-      ViewTemplate::alert("danger", "echec de l'insertion", "liste.php");
+      ViewUser::ajoutUser();
     }
-  } else {
-    ViewUser::ajoutUser();
-  }
-  ?>
-</div>
-
+    ?>
 
   <?php
   require_once "../../../view/user/admin/ViewTemplate.php";
   ViewTemplate::footer()
- ?>
+  ?>
 </body>
 
 </html>

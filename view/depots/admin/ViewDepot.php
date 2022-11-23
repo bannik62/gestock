@@ -8,7 +8,7 @@ class ViewDepot
   {
     $liste = ModelDepot::listeDepots();
 ?>
-    <div class="card my-5">
+    <div class="card my-5 p-3 border-2 border-start border-primary border-top   ">
       <?php
       if ($liste) {
       ?>
@@ -31,7 +31,7 @@ class ViewDepot
             <?php
 
 
-            foreach ($liste  as $colonne => $valeur) {
+            foreach ($liste  as $valeur) {
             ?>
               <tr>
                 <th scope="row"><?= $valeur['id'] ?></th>
@@ -43,6 +43,7 @@ class ViewDepot
                 <td><?= $_SESSION['id'] ?></td>
 
                 <td>
+                  <a href="/controller/depots/admin/stock-depot.php?id=<?= $valeur['id'] ?> " class="btn btn-info text-white">stock</a>
                   <a href="voir.php?id=<?= $valeur['id'] ?>" class="btn btn-info text-white">Voir</a>
                   <a href="supp.php?id=<?= $valeur['id'] ?>" class="btn btn-danger">Supprimer</a>
                 </td>
@@ -69,19 +70,20 @@ class ViewDepot
     // j'ai trouvé le Depot
     if ($Depot) {
     ?>
-      <div>
-        <div class="card" style="width: 18rem;">
+      <div class="container  d-flex justify-content-center py-2 my-5">
+        <div class="card " style="width: 40%;">
           <div class="card-body">
-            <h5 class="card-title">Depot : <?= $Depot['id'] . " : " . $Depot['nom'] . " " . $Depot['ville'];  ?> </h5>
+            <h5 class="card-title">
+              <h5 class="card-title">Depot : <?= $Depot['id'] . " : " . $Depot['nom'] . " " . $Depot['ville'];  ?> </h5>
 
-            <p class="card-text">
-             Login: <?= $Depot['ville'] ?><br>
-             Nom: <?= $Depot['nom'] ?>
-            </p>
-            <a href="modif.php?id=<?= $Depot['id'] ?>" class="btn btn-info">Modifier</a>
-            <a href="supp.php?id=<?= $Depot['id'] ?>" class="btn btn-danger">Supprimer</a><br><br>
-            <a href="liste.php" class="btn btn-primary">
-              < Retour</a>
+              <p class="card-text">
+                Login: <?= $Depot['ville'] ?><br>
+                Nom: <?= $Depot['nom'] ?>
+              </p>
+              <a href="modif.php?id=<?= $Depot['id'] ?>" class="btn btn-info">Modifier</a>
+              <a href="supp.php?id=<?= $Depot['id'] ?>" class="btn btn-danger">Supprimer</a><br><br>
+              <a href="index.php" class="btn btn-primary">
+                < Retour</a>
           </div>
         </div>
       </div>
@@ -139,36 +141,93 @@ class ViewDepot
   {
 
   ?>
-<div class="card m-5 ">
-    <form class="col-md-6 offset-md-3" method="post" action="<?php htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-      <div class="form-group">
-        <label for="nom">Nom : </label>
-        <input type="text" class="form-control" name="nom" id="nom">
-      </div>
-      <div class="form-group">
-        <label for="ville">ville : </label>
-        <input type="text" class="form-control" name="ville" id="ville">
-      </div>
-      <div class="form-group">
-        <label for="code_post">code postal : </label>
-        <input type="txt" class="form-control" name="code_post" id="code_post">
-      </div>
-      <div class="form-group">
-        <label for="longi">Longitude: </label>
-        <input type="txt" class="form-control" name="longi" id="longi">
-      </div>
-      <div class="form-group">
-        <label for="lat">latitude : </label>
-        <input type="txt" class="form-control" name="lat" id="lat">
-      </div>
-      <div class="form-group">
-        <input type="hidden" class="form-control" name="directeur" id="directeur" value="<?= $_SESSION['id']; ?>">
-      </div>
+    <div class="card m-5 ">
+      <form class="col-md-6 offset-md-3" method="post" action="<?php htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <div class="form-group">
+          <label for="nom">Nom : </label>
+          <input type="text" class="form-control" name="nom" id="nom">
+        </div>
+        <div class="form-group">
+          <label for="ville">ville : </label>
+          <input type="text" class="form-control" name="ville" id="ville">
+        </div>
+        <div class="form-group">
+          <label for="code_post">code postal : </label>
+          <input type="txt" class="form-control" name="code_post" id="code_post">
+        </div>
+        <div class="form-group">
+          <label for="longi">Longitude: </label>
+          <input type="txt" class="form-control" name="longi" id="longi">
+        </div>
+        <div class="form-group">
+          <label for="lat">latitude : </label>
+          <input type="txt" class="form-control" name="lat" id="lat">
+        </div>
+        <div class="form-group">
+          <input type="hidden" class="form-control" name="directeur" id="directeur" value="<?= $_SESSION['id']; ?>">
+        </div>
 
-      <button type="submit" class="btn btn-primary" name="ajout" id="ajout">Ajouter</button>
-      <button type="reset" class="btn btn-danger">Réinitialiser</button>
-    </form>
-  </div>
+        <button type="submit" class="btn btn-primary" name="ajout" id="ajout">Ajouter</button>
+        <button type="reset" class="btn btn-danger">Réinitialiser</button>
+      </form>
+    </div>
+  <?php
+  }
+
+  public static function listeDepots2($id)
+  {
+    $liste = ModelDepot::stockDepot($id);
+  ?>
+    <div class="card my-5">
+      <?php
+      if ($liste) {
+      ?>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nom</th>
+              <th scope="col">type de produit</th>
+              <th scope="col">quantité</th>
+              <th scope="col">photo</th>
+
+
+            </tr>
+          </thead>
+          <tbody>
+
+
+            <?php
+
+            foreach ($liste  as $colonne => $valeur) {
+
+            ?>
+              <tr>
+                <th scope="row"><?= $valeur['id'] ?></th>
+                <td><?= $valeur['nom'] ?></td>
+                <td><?= $valeur['type'] ?></td>
+                <td><?= $valeur['quantite'] ?></td>
+                <td><?= $valeur['photo'] ?></td>
+
+
+                <td>
+                  <a href="voir.php?id=<?= $valeur['id'] ?>" class="btn btn-info text-white">Voir</a>
+                  <a href="supp.php?id=<?= $valeur['id'] ?>" class="btn btn-danger">Supprimer</a>
+                </td>
+              </tr>
+            <?php
+            }
+            ?>
+
+
+          </tbody>
+        </table>
+      <?php
+      } else {
+        echo "aucun Depot n'a été trouvé dans la liste.";
+      }
+      ?>
+    </div>
 <?php
   }
 }

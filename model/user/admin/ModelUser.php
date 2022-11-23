@@ -102,7 +102,7 @@ class ModelUser
     $idcon = connexion();
     $requete = $idcon->prepare("
     UPDATE `user` SET `id`='[:id]',`nom`='[:nom]',`prenom`='[:prenom]',`login`='[:login]',`pass`='[:pass]',`role`='[:role]' WHERE `id`='[:id]'    ");
-    return $requet->execute([
+    return $requete->execute([
       ':nom' => $nom,
       ':prenom' => $prenom,
       ':login' => $login,

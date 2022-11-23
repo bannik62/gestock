@@ -36,15 +36,13 @@ class ModelCatProduit
 
   }
 
-  public static function ajoutCatProduit( $id ,$type=null)
+  public static function ajoutCatProduit($type)
   {
     $idcon = connexion();
-    $requete = $idcon->prepare("
-      INSERT INTO type_pdt VALUES ('null',':type' )
-    ");
+    $requete = $idcon->prepare("INSERT INTO type_pdt VALUES (null,:type )");
     return $requete->execute([
-     ':id' => $id,
-      ':nom' => $type,
+    
+      ':type' => $type,
   
     ]);
   }

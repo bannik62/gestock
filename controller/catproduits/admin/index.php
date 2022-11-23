@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="fr">
-
 <?php require_once "../../../view/headadmin.php";
 ?>
 
@@ -14,7 +13,6 @@
     <?php
     require_once "../../../view/catProduits/admin/ViewTemplate.php";
     require_once "../../../view/catProduits/admin/ViewCatProduit.php";
-
     ViewCatProduit::listeCatProduit();
     ?>
   </div>

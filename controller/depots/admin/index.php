@@ -14,10 +14,9 @@ if (isset($_SESSION['id']) && $_SESSION['role'] === "admin") {
 ?>
 <!doctype html>
 <html lang="fr">
-<?php require_once "../../../view/headadmin.php"; ?>
+<?php require_once "../../../view/headadmin.php";?>
 
 <?php
-
 
 if (isset($_SESSION['id']) && $_SESSION['role'] === "admin") {
     $html = '<h1 class="text-center" ><u>interface administrateur</u></h1>';
@@ -42,7 +41,7 @@ if (isset($_SESSION['id']) && $_SESSION['role'] === "admin") {
         require_once "../../../view/depots/admin/ViewDepot.php";
         require_once "../../../model/depots/admin/ModelDepot.php";
         $liste = ModelDepot::listeDepots();
-        ViewDepot::listeDepots($liste);
+        ViewDepot::listeDepots();
 
         ?>
     </div>

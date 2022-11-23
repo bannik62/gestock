@@ -9,12 +9,11 @@ class ViewUser
     <?php
     if ($liste) {
     ?>
-      <div class="card  d-flex justify-content-center py-2 my-5">
+      <div class="card  d-flex justify-content-center py-2 my-5  my-5 p-3 border-2 border-start border-primary border-top">
 
         <table class="table table-striped">
           <thead>
             <tr>
-              <th scope="col">#</th>
               <th scope="col">Nom</th>
               <th scope="col">Prénom</th>
               <th scope="col">Login</th>
@@ -26,7 +25,7 @@ class ViewUser
           </thead>
           <tbody>
             <?php
-            foreach ($liste  as $colonne => $valeur) {
+            foreach ($liste  as  $valeur) {
             ?>
               <tr>
                 <th scope="row"><?= $valeur['id'] ?></th>
@@ -127,38 +126,44 @@ class ViewUser
 
   public static function ajoutUser()
   { ?>
-    <div class="py-2 my-5 border border-1 border-danger mx-auto " style="height: 100%; width:50%">
+    <div class="container justify-content-center py-2 my-5">
+      <div class="card " >
+        <div class="card-body">
+          <h5 class="card-title">
+            <form class="col-md-6 offset-md-3" method="post" action="<?php htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+              <div class="form-group">
 
-      <form class="col-md-6 offset-md-3" method="post" action="<?php htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <div class="form-group">
-
-          <div class="form-group">
-            <label for="prenom">nom : </label>
-            <input type="text" class="form-control" name="nom" id="nom">
-          </div>
-          <div class="form-group">
-            <label for="mail">Prenom : </label>
-            <input type="text" class="form-control" name="prenom" id="prenom">
-          </div>
-          <div class="form-group">
-            <label for="tel">login : </label>
-            <input type="text" class="form-control" name="login" id="login">
-          </div>
-          <div class="form-group">
-            <label for="tel">Password : </label>
-            <input type="password" class="form-control" name="pass" id="pass">
-          </div>
-          <div class="form-group">
-            <select name="role" id="role" class=" m-3">
-              <option value="#"> --role shouaitez-- </option>
-              <option value="admin">admin</option>
-              <option value="user">user</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn-primary" name="ajout" id="ajout">Ajouter</button>
-          <button type="reset" class="btn btn-danger">Réinitialiser</button>
-      </form>
+                <div class="form-group">
+                  <label for="prenom">nom : </label>
+                  <input type="text" class="form-control" name="nom" id="nom">
+                </div>
+                <div class="form-group">
+                  <label for="mail">Prenom : </label>
+                  <input type="text" class="form-control" name="prenom" id="prenom">
+                </div>
+                <div class="form-group">
+                  <label for="tel">login : </label>
+                  <input type="text" class="form-control" name="login" id="login">
+                </div>
+                <div class="form-group">
+                  <label for="tel">Password : </label>
+                  <input type="password" class="form-control" name="pass" id="pass">
+                </div>
+                <div class="form-group">
+                  <select name="role" id="role" class=" m-3">
+                    <option value="#"> --role shouaitez-- </option>
+                    <option value="admin">admin</option>
+                    <option value="user">user</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary" name="ajout" id="ajout">Ajouter</button>
+                <button type="reset" class="btn btn-danger">Réinitialiser</button>
+              </div>
+            </form>
+        </div>
+      </div>
     </div>
+
   <?php
   }
 

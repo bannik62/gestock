@@ -35,7 +35,15 @@ class ModelDepot
     $requete->execute();
     return $requete->fetchAll(PDO::FETCH_ASSOC);
   }
+   
+  public static function stockDepot($id_depot)
+  {
+      $idcon = connexion();
 
+      $requete = $idcon->prepare("SELECT pdt.id, nom, type_pdt.type, quantite, photo, description FROM `pdt_depo` INNER JOIN pdt ON id_pdt = pdt.id INNER JOIN type_pdt ON type_pdt.id = pdt.type WHERE id_depot = ?");
+      $requete->execute([$id_depot]);
+      return $requete->fetchAll(PDO::FETCH_ASSOC);
+  }
   public static function voirDepot($id)
   {
     $idcon = connexion();
@@ -79,9 +87,7 @@ class ModelDepot
   {
     $idcon = connexion();
     $requete = $idcon->prepare("
-    UPDATE depot SET id=:id ,nom=:nom, ville=:ville, code_post=:code_post, longi=:longi ,lat=:lat, directeur=:directeur WHERE id = :id
-
-    ");
+    UPDATE depot SET id=:id ,nom=:nom, ville=:ville, code_post=:code_post, longi=:longi ,lat=:lat, directeur=:directeur WHERE id = :id");
     return $requete->execute([
       ':id' => $id,
       ':nom' => $nom,
@@ -122,13 +128,13 @@ class ModelDepot
 
   public  function getlat()
   {
-    $this->$lat;
+    $this->lat;
     return $this;
   }
 
-  public function setDirecteur()
+  public function getDirecteur()
   {
-    $this->$directeur;
+    $this->directeur;
     return $this;
   }
 }

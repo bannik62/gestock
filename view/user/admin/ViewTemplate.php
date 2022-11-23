@@ -11,7 +11,7 @@ class ViewTemplate
       <div class="collapse navbar-collapse ms-5" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a href="admin.php" class="btn btn-secondary ">interface administrateur</a>
+            <a href="admin.php" class="btn btn-secondary ">interface utilisateur</a>
           </li>
 
 
