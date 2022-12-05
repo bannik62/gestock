@@ -4,10 +4,13 @@ class ViewTemplate
 {
   public static function menu()
   { ?>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <a class="navbar-brand" href="#">StockOption <i class="fa-solid fa-boxes-stacked"></i></a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
+      <a class="navbar-brand" href="#">StockOption<i class="fa-solid fa-boxes-stacked"></i></a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a href="../../user/noneadmin/index.php" class="btn btn-info ">interface utilisateur </a>
+          </li>
       </div>
     </nav>
   <?php

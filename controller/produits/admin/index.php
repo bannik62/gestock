@@ -1,16 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION['id']) && ($_SESSION['role'] === "admin" | $_SESSION['role'] === "directeur")) {
-  $html = '<h1 class="text-center" ><u>interface administrateur</u></h1>';
-  $html .= '<h2 class="text-center" > Bonjour ' . $_SESSION['prenom'] . " " . $_SESSION['nom'] . "<h2>";
-} else {
-  var_dump($_SESSION['id']);
-  var_dump($_SESSION['role']);
-
-  // header('Location: connexion-DepotlisteDepots.php');
-  exit;
-}
+if (isset($_SESSION['id']) && ($_SESSION['role'] === "admin" || $_SESSION['role'] === "directeur" ||$_SESSION['role'] === "superadmin" )) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,8 +11,7 @@ if (isset($_SESSION['id']) && ($_SESSION['role'] === "admin" | $_SESSION['role']
 <body>
 
 <?php   
-require_once "../../../view/produits/admin/ViewTemplate.php";
- ViewTemplate::menu();
+require_once "../../../view/navadmin.php";
 ?>
   <?php
   require_once "../../../view/produits/admin/ViewProduit.php";
@@ -35,3 +25,10 @@ require_once "../../../view/produits/admin/ViewTemplate.php";
 ?>
 </body>
 </html>
+<?php } else {
+  var_dump($_SESSION['id']);
+  var_dump($_SESSION['role']);
+
+  header('Location: connexion-users.php');
+  exit;
+}?>

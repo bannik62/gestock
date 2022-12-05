@@ -9,54 +9,55 @@ class ViewDepot
     $liste = ModelDepot::listeDepots();
 ?>
     <div class="container">
-      <?php
-      if ($liste) {
-      ?>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nom</th>
-              <th scope="col">ville</th>
-              <th scope="col">code_post </th>
-              <th scope="col">longitude</th>
-              <th scope="col">latitude</th>
-              <th scope="col">directeur</th>
-
-            </tr>
-          </thead>
-          <tbody>
-
-
-            <?php
-
-
-            foreach ($liste  as $colonne => $valeur) {
-            ?>
+      <div class="card">
+        <?php
+        if ($liste) {
+        ?>
+          <table class="table">
+            <thead>
               <tr>
-                <th scope="row"><?= $valeur['id'] ?></th>
-                <td><?= $valeur['nom'] ?></td>
-                <td><?= $valeur['ville'] ?></td>
-                <td><?= $valeur['code_post'] ?></td>
-                <td><?= $valeur['longit'] ?></td>
-                <td><?= $valeur['lat'] ?></td>
-                <td><?= $_SESSION['id'] ?></td>
+                <th scope="col">#</th>
+                <th scope="col">Nom</th>
+                <th scope="col">ville</th>
+                <th scope="col">code_post </th>
+                <th scope="col">longitude</th>
+                <th scope="col">latitude</th>
+                <th scope="col">directeur</th>
 
-                <td>
- </td>
               </tr>
-            <?php
-            }
-            ?>
+            </thead>
+            <tbody>
 
 
-          </tbody>
-        </table>
-      <?php
-      } else {
-        echo "aucun Depot n'a été trouvé dans la liste.";
-      }
-      ?>
+              <?php
+
+
+              foreach ($liste  as $colonne => $valeur) {
+              ?>
+                <tr>
+                  <th scope="row"><?= $valeur['id'] ?></th>
+                  <td><?= $valeur['nom'] ?></td>
+                  <td><?= $valeur['ville'] ?></td>
+                  <td><?= $valeur['code_post'] ?></td>
+                  <td><?= $valeur['longit'] ?></td>
+                  <td><?= $valeur['lat'] ?></td>
+                  <td><?= $_SESSION['id'] ?></td>
+                  <td>
+                  </td>
+                </tr>
+              <?php
+              }
+              ?>
+
+
+            </tbody>
+          </table>
+        <?php
+        } else {
+          echo "aucun Depot n'a été trouvé dans la liste.";
+        }
+        ?>
+      </div>
     </div>
     <?php
   }
@@ -73,8 +74,8 @@ class ViewDepot
             <h5 class="card-title">Depot : <?= $Depot['id'] . " : " . $Depot['nom'] . " " . $Depot['ville'];  ?> </h5>
 
             <p class="card-text">
-             Login: <?= $Depot['ville'] ?><br>
-             Nom: <?= $Depot['nom'] ?>
+              Login: <?= $Depot['ville'] ?><br>
+              Nom: <?= $Depot['nom'] ?>
             </p>
             <a href="modif.php?id=<?= $Depot['id'] ?>" class="btn btn-info">Modifier</a>
             <a href="supp.php?id=<?= $Depot['id'] ?>" class="btn btn-danger">Supprimer</a><br><br>

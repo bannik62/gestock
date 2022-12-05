@@ -2,7 +2,8 @@
 <html lang="fr">
 <?php require_once "../../../view/headadmin.php"; ?>
 <body>
-  <?php require_once "../../../view/navuser.php"; ?>
+  <?php require_once "../../../view/user/noneadmin/ViewTemplate.php";
+   ViewTemplate::menu() ?>
   <div class="container list " style="width:100% ;" >
 
     <?php
@@ -16,5 +17,4 @@
     ?>
   </div>
 </body>
-
 </html>

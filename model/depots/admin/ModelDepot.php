@@ -16,12 +16,12 @@ class ModelDepot
   public function __construct($id = null, $nom = null, $ville = null, $code_post = null, $longi = null, $lat = null, $directeur = null)
   {
     // manipulation des parametres ajouts des valeurs
-    $this->id =        $id;
-    $this->nom =       $nom;
-    $this->ville =     $ville;
+    $this->id        = $id;
+    $this->nom       = $nom;
+    $this->ville     = $ville;
     $this->code_post = $code_post;
-    $this->longi =     $longi;
-    $this->lat =       $lat;
+    $this->longi     = $longi;
+    $this->lat       = $lat;
     $this->directeur = $directeur;
   }
 
@@ -35,14 +35,25 @@ class ModelDepot
     $requete->execute();
     return $requete->fetchAll(PDO::FETCH_ASSOC);
   }
-   
+
+  public static function listeDepotsProduit($id_depot)
+  {
+    $idcon = connexion();
+
+    $requete = $idcon->prepare("
+      SELECT * FROM depot
+    ");
+    $requete->execute([$id_depot]);
+    return $requete->fetchAll(PDO::FETCH_ASSOC);
+  }
+  //requete de stock  depot 
   public static function stockDepot($id_depot)
   {
-      $idcon = connexion();
+    $idcon = connexion();
 
-      $requete = $idcon->prepare("SELECT pdt.id, nom, type_pdt.type, quantite, photo, description FROM `pdt_depo` INNER JOIN pdt ON id_pdt = pdt.id INNER JOIN type_pdt ON type_pdt.id = pdt.type WHERE id_depot = ?");
-      $requete->execute([$id_depot]);
-      return $requete->fetchAll(PDO::FETCH_ASSOC);
+    $requete = $idcon->prepare("SELECT pdt.id, nom, type_pdt.type, quantite, photo, description FROM `pdt_depo` INNER JOIN pdt ON id_pdt = pdt.id INNER JOIN type_pdt ON type_pdt.id = pdt.type WHERE id_depot = ?");
+    $requete->execute([$id_depot]);
+    return $requete->fetchAll(PDO::FETCH_ASSOC);
   }
   public static function voirDepot($id)
   {
@@ -83,21 +94,30 @@ class ModelDepot
     ]);
   }
 
-  public static function modifDepot($id = null, $nom = null, $ville = null, $code_post = null, $longi = null, $lat = null, $directeur = null)
+  public static function modifDepot($id, $nom, $ville, $code_post, $longi, $lat, $directeur)
   {
     $idcon = connexion();
-    $requete = $idcon->prepare("
-    UPDATE depot SET id=:id ,nom=:nom, ville=:ville, code_post=:code_post, longi=:longi ,lat=:lat, directeur=:directeur WHERE id = :id");
+  $requete = $idcon->prepare("UPDATE depot SET 'id'=[:id] ,'nom'=[:nom], 'ville'=[:ville], 'code'=[:code_post], 'longi=[:'longi] ,'lat'=[:lat], 'directeur[:directeur] WHERE `id`=[:id]");
     return $requete->execute([
-      ':id' => $id,
-      ':nom' => $nom,
-      ':ville' => $ville,
+      ':id'        => $id,
+      ':nom'       => $nom,
+      ':ville'     => $ville,
       ':code_post' => $code_post,
-      ':longit' => $longi,
-      ':lat' => $lat,
+      ':longi'     => $longi,
+      ':lat'       => $lat,
       ':directeur' => $directeur,
     ]);
   }
+
+  public static function searchdepot($search)
+  {
+    $idcon = connexion();
+    $requete = $idcon->prepare("SELECT * FROM `stock`.`depot` WHERE UPPER(nom) LIKE '%UPPER(':nom')%' ");
+     $requete->execute([':nom'=> $search]);
+    return $requete->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+
   /*  
   GETTERS ET SETTERS
   */
@@ -121,20 +141,19 @@ class ModelDepot
     return $this->code_post;
   }
 
-  public function getlongit()
+  public function getlongi()
   {
     return $this->longi;
   }
 
   public  function getlat()
   {
-    $this->lat;
-    return $this;
+    return $this->lat;
   }
 
-  public function getDirecteur()
+  public function getdirecteur()
   {
-    $this->directeur;
-    return $this;
+
+    return  $this->directeur;
   }
 }

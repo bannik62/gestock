@@ -14,7 +14,7 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" href="/controller/user/admin/liste.php">liste</a>
-              <?php if ($_SESSION['role'] === 'directeur') { ?>
+              <?php if (($_SESSION['role'] === 'directeur' || $_SESSION['role'] === 'superadmin')) { ?>
                 <a class="dropdown-item" id="hide" href="../admin/ajout.php">ajout</a>
               <?php } ?>
 
@@ -29,8 +29,11 @@
         Dépot
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
         <a class="dropdown-item" href="/controller/depots/admin/index.php">liste</a>
+        <?php if ($_SESSION['role'] === 'directeur' ) { ?>
         <a class="dropdown-item" href="../../depots/admin/ajout.php">ajout</a>
+        <?php } ?>
       </div>
     </div>
   </div>
@@ -43,6 +46,8 @@
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" href="/controller/catproduits/admin/index.php">liste</a>
         <a class="dropdown-item" href="../../catproduits/admin/ajout.php">ajout</a>
+
+
       </div>
     </div>
   </div>

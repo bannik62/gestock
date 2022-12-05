@@ -4,6 +4,12 @@ require_once "connexion.php";
 
 class ModelUser
 {
+  private $id;
+  private $nom;
+  private $prenom;
+  private $login;
+  private $pass;
+  private $role;
 
 
 
@@ -22,21 +28,15 @@ class ModelUser
     return $requete->fetch(PDO::FETCH_ASSOC);
   }
 
-  private $id;
-  private $nom;
-  private $prenom;
-  private $login;
-  private $pass;
-  private $role;
 
   public function __construct($id = null, $nom = null, $prenom = null, $login = null, $pass = null, $role = null)
   {
-    $this->id = $id;
-    $this->nom = $nom;
+    $this->id     = $id;
+    $this->nom    = $nom;
     $this->prenom = $prenom;
-    $this->login = $login;
-    $this->pass = $pass;
-    $this->role = $role;
+    $this->login  = $login;
+    $this->pass   = $pass;
+    $this->role   = $role;
   }
 
   public static function listeUser()
@@ -62,7 +62,7 @@ class ModelUser
   }
 
 
-  public static function ajoutUser($nom, $prenom, $login, $pass, $role)
+  public static function ajoutUser( $nom, $prenom, $login, $pass, $role)
   {
 
     $idcon = connexion();
@@ -74,15 +74,15 @@ class ModelUser
     $requete = $requete->execute(
       [
 
-        ':login' => $login,
-        ':pass' => $pass,
         ':nom' => $nom,
         ':prenom' => $prenom,
+        ':login' => $login,
+        ':pass' => $pass,
         ':role' => $role,
 
       ]
     );
- 
+
     return $requete;
   }
 
@@ -100,8 +100,7 @@ class ModelUser
   public static function modifUser($id, $nom, $prenom, $login, $pass, $role)
   {
     $idcon = connexion();
-    $requete = $idcon->prepare("
-    UPDATE `user` SET `id`='[:id]',`nom`='[:nom]',`prenom`='[:prenom]',`login`='[:login]',`pass`='[:pass]',`role`='[:role]' WHERE `id`='[:id]'    ");
+    $requete = $idcon->prepare("UPDATE `user` SET `id`='[:id]',`nom`='[:nom]',`prenom`='[:prenom]',`login`='[:login]',`pass`='[:pass]',`role`='[:role]' WHERE `id`='[:id]'");
     return $requete->execute([
       ':nom' => $nom,
       ':prenom' => $prenom,

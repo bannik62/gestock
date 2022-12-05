@@ -2,13 +2,17 @@
 <?php
 session_start();
 require_once "../../../model/catproduits/noneadmin/ModelCatProduit.php";
+
 class ViewCatProduit 
 {
   public  static function listeCatProduit()
   {
     $liste = ModelCatProduit::listeCatProduit();
 ?>
+
+
     <div class="container ">
+      <div class="card">
       <?php
       if ($liste) {
       ?>
@@ -45,6 +49,7 @@ class ViewCatProduit
         echo "aucun catProduit n'a été trouvé dans la liste.";
       }
       ?>
+    </div>
     </div>
     <?php
   }

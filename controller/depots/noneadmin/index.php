@@ -5,7 +5,8 @@ session_start();
 <html lang="fr">
 <?php 
 require_once "../../../view/headadmin.php";
-require_once "../../../view/navuser.php"
+require_once "../../../view/depots/noneadmin/ViewTemplate.php";
+ViewTemplate::menu();
 ?>
 
 <?php

@@ -1,17 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
 session_start();
-require_once "../../../view/produits/admin/ViewProduit.php";
-require_once "../../../view/produits/admin/ViewTemplate.php";
-require_once "../../../view/headadmin.php";
+
 ?>
+<!DOCTYPE html>
+<html lang="en">
+ <?php require_once "../../../view/headadmin.php";?>
 
 <body>
-
+<?php   require_once "../../../view/navadmin.php"; ?>
 
   <?php
-  ViewTemplate::menu();
+  require_once "../../../view/produits/admin/ViewProduit.php";
+  require_once "../../../view/produits/admin/ViewTemplate.php";
+
+  
 
   if (isset($_GET['id'])) {
     if (ModelProduit::voirProduit($_GET['id'])) {

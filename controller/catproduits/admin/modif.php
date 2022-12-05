@@ -10,6 +10,9 @@ require_once "../../../view/headadmin.php";
   ViewTemplate::menu();
   require_once "../../../view/catproduits/admin/ViewCatProduit.php";
   require_once "../../../model/catproduits/admin/ModelCatProduit.php";
+  require_once "../../../view/catproduits/admin/ViewCatProduit.php";
+  ViewCatProduit::modifCatProduit($id);
+
 
   if (isset($_GET['id'])) {
     if (ModelCatProduit::voirCatProduit($_GET['id'])) {

@@ -61,12 +61,10 @@ class ModelCatProduit
   public static function modifCatProduit($id,$type)
   {
     $idcon = connexion();
-    $requet = $idcon->prepare("
-      UPDATE type_pdt SET  type = :type WHERE id = :id
-    ");
+    $requet = $idcon->prepare("UPDATE type_pdt SET id = [:id] type=[:type] WHERE id = [:id]");
     return $requet->execute([
       ':id' => $id,
-      ':type' => $type,
+     ':type' => $type,
     ]);
   }
 

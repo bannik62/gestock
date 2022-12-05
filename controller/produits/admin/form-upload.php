@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<?php
+
+
+if (isset($_SESSION['id']) && ($_SESSION['role'] === "admin" || $_SESSION['role'] === "directeur" || $_SESSION['role'] === "superadmin" )) {
+?>
+
+<div>
 <?php
 require_once "../../../model/produits/admin/Utils.php";
-
-
 if (isset($_POST['ajout'])) {
 
 
@@ -19,9 +21,20 @@ if (isset($_POST['ajout'])) {
   }
 } else {
 ?>
-  <div class="custom-file form-group ms-3 ">
-    <input type="file" name="photo" id="photo" class="m-1" value="photo" ">
+  <div class="custom-file form-group ms-3  ">
+    <input type="file" name="photo" id="photo" class="m-1" value="photo">
       <br><br>
     </div>
 <?php
 }
+}
+ else {
+  var_dump($_SESSION['id']);
+  var_dump($_SESSION['role']);
+
+  header('Location: connexion-user.php');
+  exit;
+}
+?>
+
+

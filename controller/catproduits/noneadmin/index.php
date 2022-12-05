@@ -5,23 +5,17 @@
 ?>
 
 <body>
-<?php   require_once "../../../view/navabar.php";
- ?>
-<div class="container list  " style="width:100% ;" >
-
-
-  <?php
-  require_once "../../../view/catproduits/noneadmin/ViewCatProduit.php";
-  require_once "../../../view/catProduits/noneadmin/ViewTemplate.php";
-
-  ViewCatProduit::listeCatProduit();
+  <?php require_once "../../../view/catproduits/noneadmin/ViewTemplate.php";
+  ViewTemplate::menu()
   ?>
-</div>
-  <?php
-  ViewTemplate::footer();
-  ?>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+  <div class="container list mb-5 " style="width:100% ;">
+    <?php
+    require_once "../../../view/catproduits/noneadmin/ViewCatProduit.php";
+    require_once "../../../view/catProduits/noneadmin/ViewTemplate.php";
 
+    ViewCatProduit::listeCatProduit();
+    ?>
+  </div>
 </body>
 
 </html>

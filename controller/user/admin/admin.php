@@ -1,9 +1,8 @@
 <?php
 session_start();
 
-if (isset($_SESSION['id']) && ($_SESSION['role'] === "admin" ||  $_SESSION['role'] === "directeur")) {
-  $html = '<h1 class="text-center" ><u>interface administrateur</u></h1>';
-  $html .= '<h2 class="text-center" > Bonjour ' . $_SESSION['prenom'] . " " . $_SESSION['nom'] . "<h2>";
+if (isset($_SESSION['id']) && ($_SESSION['role'] === "superadmin") ||  ($_SESSION['role'] === "admin" || $_SESSION['role'] === "directeur")) {
+
 } else {
   var_dump($_SESSION['id']);
   var_dump($_SESSION['role']);
@@ -21,6 +20,8 @@ if (isset($_SESSION['id']) && ($_SESSION['role'] === "admin" ||  $_SESSION['role
 
   <div class="m-2 ">
     <p class="text-center m-1 h1"><u> Application de Gestion des Stocks et Clients </u></p>
+    <br>
+    <p class="text-center m-1 h1">Role hierarchique: <?= $_SESSION['role']?></p>
   </div>
   <div class=" text-wrap text-bg-info bg-opacity-25 overflow-scroll mx-auto mb-3 rounded-start  my-5 p-3 border-2 border-start border-primary border-top    " style="height:400px ; width:800px;width:700px ">
     <p class=" p-3">

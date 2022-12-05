@@ -1,16 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION['id']) && ($_SESSION['role'] === "admin" | $_SESSION['role'] === "directeur")) {
-  $html = '<h1 class="text-center" ><u>interface administrateur</u></h1>';
-  $html .= '<h2 class="text-center" > Bonjour ' . $_SESSION['prenom'] . " " . $_SESSION['nom'] . "<h2>";
-} else {
-  var_dump($_SESSION['id']);
-  var_dump($_SESSION['role']);
-
-  // header('Location: connexion-DepotlisteDepots.php');
-  exit;
-}
+if (isset($_SESSION['id']) && ($_SESSION['role'] === "admin" || $_SESSION['role'] === "directeur" ||$_SESSION['role'] === "superadmin" )) {
 ?>
 <!doctype html>
 <html lang="fr">
@@ -27,6 +18,7 @@ if (isset($_SESSION['id']) && ($_SESSION['role'] === "admin" | $_SESSION['role']
   require_once "../../../model/produits/admin/ModelProduit.php";
   require_once "../../../view/produits/admin/ViewTemplate.php";
   require_once "../../../model/produits/admin/Utils.php";
+ 
 
   if (isset($_POST['ajout'])) {
     if (ModelProduit::ajoutProduit($_POST['nom'], $_POST['type'],$_FILES["photo"]["name"], $_POST['description'])) {
@@ -46,3 +38,13 @@ if (isset($_SESSION['id']) && ($_SESSION['role'] === "admin" | $_SESSION['role']
 </body>
 
 </html>
+
+<?php
+} else {
+  var_dump($_SESSION['id']);
+  var_dump($_SESSION['role']);
+
+  header('Location: connexion-user.php');
+  exit;
+}
+?>

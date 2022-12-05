@@ -8,50 +8,48 @@ class ViewProduit
     $liste = ModelProduit::listeProduit();
 ?>
     <div class="container">
-      <?php
-      if ($liste) {
-      ?>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nom</th>
-              <th scope="col">Type</th>
-              <th scope="col">Photo</th>
-              <th scope="col">description</th>
-            </tr>
-          </thead>
-          <tbody>
-
-
-            <?php
-
-
-            foreach ($liste  as $colonne => $valeur) {
-            ?>
+      <div class="card">
+        <?php
+        if ($liste) {
+        ?>
+          <table class="table">
+            <thead>
               <tr>
-                <th scope="row"><?= $valeur['id'] ?></th>
-                <td><?= $valeur['nom'] ?></td>
-                <td><?= $valeur['type'] ?></td>
-                <td><?= $valeur['photo'] ?></td>
-                <td><?= $valeur['description'] ?></td>
-                <td>
-                  <a href="modif.php?id=<?= $valeur['id'] ?>" class="btn btn-info text-white">Modifier</a>
-                  <a href="supp.php?id=<?= $valeur['id'] ?>" class="btn btn-danger">Supprimer</a>
-                </td>
+                <th scope="col">#</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Type</th>
+                <th scope="col">Photo</th>
+                <th scope="col">déscription</th>
               </tr>
-            <?php
-            }
-            ?>
+            </thead>
+            <tbody>
+              <?php
+              foreach ($liste  as  $valeur) {
+              ?>
+                <tr>
+                  <th scope="row"><?= $valeur['id'] ?></th>
+                  <td><?= $valeur['nom'] ?></td>
+                  <td><?= $valeur['type'] ?></td>
+                  <td><?= $valeur['photo'] ?></td>
+                  <td><?= $valeur['description'] ?></td>
+                  <td>
+                    <a href="modif.php?id=<?= $valeur['id'] ?>" class="btn btn-info text-white">Modifier</a>
+                    <a href="supp.php?id=<?= $valeur['id'] ?>" class="btn btn-danger">Supprimer</a>
+                  </td>
+                </tr>
+              <?php
+              }
+              ?>
 
 
-          </tbody>
-        </table>
-      <?php
-      } else {
-        echo "aucun Produit n'a été trouvé dans la liste.";
-      }
-      ?>
+            </tbody>
+          </table>
+        <?php
+        } else {
+          echo "aucun Produit n'a été trouvé dans la liste.";
+        }
+        ?>
+      </div>
     </div>
     <?php
   }
@@ -93,7 +91,7 @@ class ViewProduit
   {
     $Produit = ModelProduit::voirProduit($id);
     ?>
-    <form class="col-md-6 offset-md-3" method="post" action="modif.php" >
+    <form class="col-md-6 offset-md-3" method="post" action="modif.php">
       <input type="hidden" class="form-control" name="id" id="id" value="<?= $Produit['id'] ?>">
       <div class="form-group">
         <label for="nom">Nom : </label>
@@ -111,12 +109,12 @@ class ViewProduit
         <input type="" class="form-control" name="photo" id="photo" value="">
       </div> -->
       <?php require_once "../../controller/produits/form-upload.php" ?>
-<form action="" method="post" enctype="multipart/form-data">
-      <div class="form-group">
-        <label for="description">Déscription : </label>
-        <input type="description" class="form-control" name="description" id="description" value="<?= $Produit['description'] ?>">
-      </div>
-</form>
+      <form action="" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="description">Déscription : </label>
+          <input type="description" class="form-control" name="description" id="description" value="<?= $Produit['description'] ?>">
+        </div>
+      </form>
 
       <button type="submit" class="btn btn-info" name="modif" id="modif">Modifier</button>
       <button type="reset" class="btn btn-danger">Réinitialiser</button>

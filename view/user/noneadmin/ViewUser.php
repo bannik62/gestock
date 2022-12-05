@@ -9,7 +9,7 @@ class ViewUser
     <?php
     if ($liste) {
     ?>
-      <div class=" d-flex justify-content-center p-2">
+      <div class=" d-flex justify-content-center p-2 card">
 
         <table class="table table-striped">
           <thead>
@@ -18,7 +18,6 @@ class ViewUser
               <th scope="col">Nom</th>
               <th scope="col">Prénom</th>
               <th scope="col">Login</th>
-              <th scope="col">pass</th>
               <th scope="col">role</th>
             </tr>
           </thead>
@@ -31,7 +30,6 @@ class ViewUser
                 <td><?= $valeur['nom'] ?></td>
                 <td><?= $valeur['prenom'] ?></td>
                 <td><?= $valeur['login'] ?></td>
-                <td><?= $valeur['pass'] ?></td>
                 <td><?= $valeur['role'] ?></td>
 
               </tr>

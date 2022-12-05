@@ -16,10 +16,10 @@ class ViewUser
             <tr>
               <th scope="col">Nom</th>
               <th scope="col">Prénom</th>
-              <th scope="col">Login</th>
               <!-- <th scope="col">pass</th> -->
-              <th scope="col">role</th>
-              <th scope="col">action </th>
+              <th scope="col">Login</th>
+              <th scope="col">Role</th>
+              <th scope="col">Action</th>
 
             </tr>
           </thead>
@@ -28,28 +28,31 @@ class ViewUser
             foreach ($liste  as  $valeur) {
             ?>
               <tr>
-                <th scope="row"><?= $valeur['id'] ?></th>
+
                 <td><?= $valeur['nom'] ?></td>
                 <td><?= $valeur['prenom'] ?></td>
-                <td><?= $valeur['login'] ?></td>
                 <!-- <td><?= $valeur['pass'] ?></td> -->
+                <td><?= $valeur['login'] ?></td>
                 <td><?= $valeur['role'] ?></td>
                 <td>
                   <a href="voir.php?id=<?= $valeur['id'] ?>" class="btn btn-sm btn-primary">Voir</a>
-                  <a href="supp.php?id=<?= $valeur['id'] ?>" class="btn btn-sm btn-danger">Supprimer</a>
+
+                  <?php if ($valeur['role'] === 'directeur' || $valeur['role'] === 'superadmin') { ?>
+                    <p href="#" class="btn btn-sm">administrateur</p>
+                  <?php } elseif ($valeur['role'] === 'user' || $valeur['role'] === 'admin') { ?>
+                    <a href="supp.php?id=<?= $valeur['id'] ?>" class="btn btn-sm btn-danger ">Supprimer</a>
+                <?php }
+                } ?>
+
+
                 </td>
               </tr>
-            <?php
-            }
-            ?>
-
-
           </tbody>
         </table>
       </div>
     <?php
     } else {
-      echo "aucun UserModelUser n'a été trouvé dans la liste.";
+      echo "aucun utilisateur n'a été trouvé dans la liste.";
     }
     ?>
 
@@ -102,7 +105,7 @@ class ViewUser
           <input type="text" class="form-control" name="nom" id="nom" value="<?= $UserModelUser['nom'] ?>">
         </div>
         <div class="form-group">
-          <label for="prenom">Prenom : </label>
+          <label for="prenom">Prénom : </label>
           <input type="txt" class="form-control" name="prenom" id="prenom" value="<?= $UserModelUser['prenom'] ?>">
         </div>
         <div class="form-group">
@@ -125,41 +128,53 @@ class ViewUser
   }
 
   public static function ajoutUser()
+
   { ?>
     <div class="container justify-content-center py-2 my-5">
-      <div class="card " >
+      <div class="card ">
         <div class="card-body">
-          <h5 class="card-title">
-            <form class="col-md-6 offset-md-3" method="post" action="<?php htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-              <div class="form-group">
+          <h2 class="card-titlet text-center"> ajout d'utilisateur </h2>
+          <form class="col-md-6 offset-md-3" method="post" action="<?php htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <div class="form-group">
 
-                <div class="form-group">
-                  <label for="prenom">nom : </label>
-                  <input type="text" class="form-control" name="nom" id="nom">
-                </div>
-                <div class="form-group">
-                  <label for="mail">Prenom : </label>
-                  <input type="text" class="form-control" name="prenom" id="prenom">
-                </div>
-                <div class="form-group">
-                  <label for="tel">login : </label>
-                  <input type="text" class="form-control" name="login" id="login">
-                </div>
-                <div class="form-group">
-                  <label for="tel">Password : </label>
-                  <input type="password" class="form-control" name="pass" id="pass">
-                </div>
-                <div class="form-group">
+              <div class="form-group">
+                <label for="prenom">nom : </label>
+                <input type="text" class="form-control" name="nom" id="nom">
+              </div>
+              <div class="form-group">
+                <label for="mail">Prenom : </label>
+                <input type="text" class="form-control" name="prenom" id="prenom">
+              </div>
+              <div class="form-group">
+                <label for="tel">login : </label>
+                <input type="text" class="form-control" name="login" id="login">
+              </div>
+              <div class="form-group">
+                <label for="tel">Password : </label>
+                <input type="password" class="form-control" name="pass" id="pass">
+              </div>
+              <div class="form-group">
+                <?php if (isset($_SESSION['id']) && ($_SESSION['role'] === "directeur" || $_SESSION['role'] === "directeur")) { ?>
                   <select name="role" id="role" class=" m-3">
                     <option value="#"> --role shouaitez-- </option>
-                    <option value="admin">admin</option>
+                    <option value="admin"> admin </option>
                     <option value="user">user</option>
                   </select>
-                </div>
-                <button type="submit" class="btn btn-primary" name="ajout" id="ajout">Ajouter</button>
-                <button type="reset" class="btn btn-danger">Réinitialiser</button>
+
+                <?php } elseif (isset($_SESSION['id']) && ($_SESSION['role'] === "superadmin")) { ?>
+                  <select name="role" id="role" class=" m-3">
+                    <option value="#"> --role shouaitez-- </option>
+                    <option value="admin"> admin </option>
+                    <option value="user">user</option>
+                    <option value="directeur">directeur</option>
+                  </select>
+
+                <?php } ?>
               </div>
-            </form>
+              <button type="submit" class="btn btn-primary" name="ajout" id="ajout">Ajouter</button>
+              <button type="reset" class="btn btn-danger">Réinitialiser</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -184,6 +199,26 @@ class ViewUser
         <button type="reset" name="annuler" class="btn btn-danger">Annuler</button>
       </form>
     </div>
+  <?php
+  }
+  public static function superboard()
+  {
+  ?>
+    <div class=" container card my-2">
+      <div class="d-flex justify-content-around border border-primary rounded-3 mx-auto my-2 bg-dark bg-opacity-50 " style="width :800px ; height : 300px ">
+        <div class=" border border-primary p-2 m-2" >
+          <p>information sur les dépots</p>
+        </div>
+        <div class=" border border-primary p-2 m-2" >
+          <p>liste des depots</p>
+        </div>
+        <div class=" border border-primary p-2 m-2" >
+          <p>divers</p>
+        </div>
+
+      </div>
+    </div>
 <?php
   }
 }
+?>

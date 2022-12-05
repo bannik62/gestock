@@ -4,8 +4,8 @@ class ViewTemplate
 {
   public static function menu()
   { ?>
-       <nav class="navbar navbar-expand-lg navbar-dark bg-primary d-flex">
-        <a class="navbar-brand ms-1  href="#">StockOption <i class="fa-solid fa-boxes-stacked"></i></a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary d-flex">
+      <a class="navbar-brand ms-1  href=" #">StockOption <i class="fa-solid fa-boxes-stacked"></i></a>
 
 
       <div class="collapse navbar-collapse ms-5" id="navbarSupportedContent">
@@ -13,13 +13,10 @@ class ViewTemplate
           <li class="nav-item active">
             <a href="admin.php" class="btn btn-secondary ">interface utilisateur</a>
           </li>
-
-
       </div>
     </nav>
   <?php
   }
-
 
   public static function footer()
   { ?>
@@ -30,7 +27,7 @@ class ViewTemplate
           Gestock copyright &copy; <?= date("Y") ?>
         </div>
         <div>
-          <p> Utilisateur : </p><?php echo  $_SESSION['prenom'] . " " . $_SESSION['nom']; ?>
+          <p> Utilisateur : <?php echo  $_SESSION['prenom'] . " " . $_SESSION['nom']; ?></p>
         </div>
       </div>
 
