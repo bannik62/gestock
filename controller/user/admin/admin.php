@@ -2,13 +2,6 @@
 session_start();
 
 if (isset($_SESSION['id']) && ($_SESSION['role'] === "superadmin") ||  ($_SESSION['role'] === "admin" || $_SESSION['role'] === "directeur")) {
-
-} else {
-  var_dump($_SESSION['id']);
-  var_dump($_SESSION['role']);
-  header('Location: connexion-user.php');
-  exit;
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,3 +38,10 @@ if (isset($_SESSION['id']) && ($_SESSION['role'] === "superadmin") ||  ($_SESSIO
 </body>
 
 </html>
+
+<?php } else {
+  var_dump($_SESSION['id']);
+  var_dump($_SESSION['role']);
+  header('Location: connexion-user.php');
+  exit;
+}?>

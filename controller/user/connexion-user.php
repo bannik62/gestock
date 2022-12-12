@@ -1,13 +1,12 @@
-<!doctype html>
-<html lang="fr">
 <?php
 session_start();
-require_once "../../view/headadmin.php";
-
 ?>
+<!doctype html>
+<html lang="fr">
 
 <body>
   <?php
+  require_once "../../view/headadmin.php";
   require_once "../../view/navabar.php";
 ?>
   <h1 class="text-center">Bienvenue veuillez vous connectez <br>pour geré vos stocks</h1>
@@ -17,9 +16,7 @@ require_once "../../view/headadmin.php";
   require_once "../../model/user/noneadmin/ModelUser.php";
   // page receptrice :  j'ai des données dans POST
   if (isset($_POST['connexion'])) {
-
-
-    $userData = ModelUser::connexionUser($_POST['login']);
+  $userData = ModelUser::connexionUser($_POST['login']);
     // test si user existe (userData n'est pas vide, donc == true) && il faut qu'il ait le bon mdp
     // couple login et mdp est bon
     if ($userData && password_verify($_POST['pass'], $userData['pass'])) {

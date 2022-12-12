@@ -10,25 +10,8 @@ class ModelUser
   private $login;
   private $pass;
   private $role;
-
-
-
-  public static function connexionUser($login)
-  {
-    $idcon = connexion();
-    $requete = $idcon->prepare("
-      SELECT * FROM user WHERE login = :login
-    ");
-
-    $requete->execute([
-      ':login' => $login,
-    ]);
-
-
-    return $requete->fetch(PDO::FETCH_ASSOC);
-  }
-
-
+  
+  
   public function __construct($id = null, $nom = null, $prenom = null, $login = null, $pass = null, $role = null)
   {
     $this->id     = $id;
@@ -38,6 +21,16 @@ class ModelUser
     $this->pass   = $pass;
     $this->role   = $role;
   }
+
+  public static function connexionUser($login)
+  {
+    $idcon = connexion();
+    $requete = $idcon->prepare("SELECT * FROM user WHERE login = :login");
+    $requete->execute([':login' => $login,]);
+    return $requete->fetch(PDO::FETCH_ASSOC);
+  }
+
+
 
   public static function listeUser()
   {
@@ -62,7 +55,7 @@ class ModelUser
   }
 
 
-  public static function ajoutUser( $nom, $prenom, $login, $pass, $role)
+  public static function ajoutUser($nom, $prenom, $login, $pass, $role)
   {
 
     $idcon = connexion();

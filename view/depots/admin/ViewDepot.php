@@ -4,16 +4,16 @@ require "../../../model/depots/admin/ModelDepot.php ";
 
 class ViewDepot
 {
-  public  static function listeDepots($search = null )
+  public  static function listeDepots($search = null)
   {
     if ($search != null) {
-  $liste=ModelDepot::searchdepot($search);
-    }else{
-    $liste = ModelDepot::listeDepots();
-  }
+      $liste = ModelDepot::searchdepot($search);
+    } else {
+      $liste = ModelDepot::listeDepots();
+    }
 ?>
 
-  
+
     <div class="card my-5 p-3 border-2 border-start border-primary border-top   ">
       <?php
       if ($liste) {
@@ -27,7 +27,7 @@ class ViewDepot
               <th scope="col">code_post </th>
               <th scope="col">longitude</th>
               <th scope="col">latitude</th>
-             
+
 
             </tr>
           </thead>
@@ -46,8 +46,6 @@ class ViewDepot
                 <td><?= $valeur['code_post'] ?></td>
                 <td><?= $valeur['longit'] ?></td>
                 <td><?= $valeur['lat'] ?></td>
-                <td><?= $valeur['directeur'] ?></td>
-
                 <td>
                   <a href="/controller/depots/admin/stock-depot.php?id=<?= $valeur['id'] ?> " class="btn btn-info text-white">stock</a>
                   <a href="voir.php?id=<?= $valeur['id'] ?>" class="btn btn-info text-white">Voir</a>
@@ -114,32 +112,32 @@ class ViewDepot
 
     var_dump($_SESSION); ?>
     <form class="col-md-6 offset-md-3" method="post" action="modif.php">
-     
+
       <div class="form-group">
         <label for="nom">Nom : </label>
         <input type="text" class="form-control" name="nom" id="nom" value="<?= $Depot['nom'] ?>">
       </div>
-    
+
       <div class="form-group">
         <label for="ville">Ville : </label>
         <input type="text" class="form-control" name="ville" id="ville" value="<?= $Depot['ville'] ?>">
       </div>
-    
+
       <div class="form-group">
         <label for="code_postal">Code Postal : </label>
         <input type="txt" class="form-control" name="code_post" id="code_post" value="<?= $Depot['code_post'] ?>">
       </div>
-     
+
       <div class="form-group">
         <label for="longi">longitude : </label>
         <input type="text" class="form-control" name="longi" id="longi" value="<?= $Depot['longi'] ?>">
       </div>
-     
+
       <div class="form-group">
         <label for="lat">latitude : </label>
         <input type="text" class="form-control" name="lat" id="lat" value="<?= $Depot['lat'] ?>">
       </div>
-      
+
       <div class="form-group hide ">
         <input type="hidden" class="form-control" name="directeur" id="directeur" value="<?= $_SESSION['role']  ?>">
       </div>
@@ -241,17 +239,17 @@ class ViewDepot
       }
       ?>
     </div>
-<?php
+  <?php
   }
   public static function searchdepot()
-  {?> 
-    <div class=" card border border-primary " >
-    <form method="GET" class="d-flex" name="searchdepot"  id="searchdepot" role="search">
-  <input class="form-control me-2" name="search" type="search" placeholder="recherche" aria-label="Search">
-  <button  class="btn btn-secondary " type="submit">rechercher un dépot </a>
-</form>
-  </div>
- <?php }
-
+  { ?> <div class="container mt-5 ">
+      <div class=" card border border-primary col-6 mx-auto ">
+        <form method="GET" class="d-flex" name="searchdepot" id="searchdepot" role="search">
+          <input class="form-control me-2" name="search" type="search" placeholder="recherche" aria-label="Search">
+          <button class="btn btn-secondary " type="submit">rechercher un dépot </a>
+        </form>
+      </div>
+    </div>
+<?php }
 }
- ?>
+?>

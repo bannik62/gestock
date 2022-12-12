@@ -5,7 +5,7 @@ class ViewTemplate
   public static function menu()
   { ?>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary p-2 mb-1">
-      <a class="navbar-brand" href="#">StockOption  <i class="fa-solid fa-boxes-stacked"></i></a>
+      <a class="navbar-brand" href="#">StockOption<i class="fa-solid fa-boxes-stacked"></i></a>
 
 
       <div class="collapse navbar-collapse ms-5 " id="navbarSupportedContent">

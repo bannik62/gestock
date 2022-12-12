@@ -64,10 +64,10 @@ class ModelProduit
     ]);
   }
 
-  public static function modifproduit($id = null, $nom = null, $type = null, $photo = null, $description = null)
+  public static function modifproduit($id , $nom , $type , $photo , $description )
   {
     $idcon = connexion();
-    $requet = $idcon->prepare("UPDATE pdt SET id=:id ,nom=:nom, type=:type, photo=:photo, description=:description WHERE id = :id");
+    $requet = $idcon->prepare("UPDATE pdt SET nom=:nom, type=:type, photo=:photo, description=:description WHERE id = :id");
     return $requet->execute([
       ':id' => $id,
       ':nom' => $nom,

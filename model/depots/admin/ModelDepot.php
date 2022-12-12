@@ -58,27 +58,22 @@ class ModelDepot
   public static function voirDepot($id)
   {
     $idcon = connexion();
-    $requete = $idcon->prepare("
-      SELECT * FROM depot where id=:id;
-    ");
-    $requete->execute([
-      ':id' => $id,
-    ]);
+    $requete = $idcon->prepare("SELECT * FROM depot where id=:id;");
+    $requete->execute([':id' => $id,]);
     return $requete->fetch(PDO::FETCH_ASSOC);
   }
 
   public static function ajoutDepot($nom, $ville, $code_post, $longi, $lat, $directeur)
   {
     $idcon = connexion();
-    $requete = $idcon->prepare("
-    INSERT INTO depot VALUES (null, :nom,:ville,:code_post,:longi,:lat,:directeur)");
+    $requete = $idcon->prepare("INSERT INTO depot VALUES (null, :nom,:ville,:code_post,:longi,:lat,:directeur)");
     return $requete->execute([
 
-      ':nom' => $nom,
-      ':ville' => $ville,
+      ':nom'       => $nom,
+      ':ville'     => $ville,
       ':code_post' => $code_post,
-      ':longi' => $longi,
-      ':lat' => $lat,
+      ':longi'     => $longi,
+      ':lat'       => $lat,
       ':directeur' => $directeur
     ]);
   }
@@ -112,7 +107,7 @@ class ModelDepot
   public static function searchdepot($search)
   {
     $idcon = connexion();
-    $requete = $idcon->prepare("SELECT * FROM `stock`.`depot` WHERE UPPER(nom) LIKE '%UPPER(':nom')%' ");
+    $requete = $idcon->prepare("SELECT * FROM `depot` WHERE nom LIKE CONCAT('%',:nom,'%') ");
      $requete->execute([':nom'=> $search]);
     return $requete->fetchAll(PDO::FETCH_ASSOC);
   }

@@ -185,7 +185,7 @@ class ViewUser
   public static function connexion()
   {
   ?>
-    <div class="  p-2  border rounded border-dark py-2 my-5 ">
+    <div class=" p-2  border rounded border-dark py-2 my-5 ">
       <form class="col-md-6 offset-md-3" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" enctype="multipart/form-data">
         <div class="form-group">
           <label for="login">Login : </label>

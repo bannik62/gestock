@@ -26,7 +26,7 @@ class ViewProduit
             <?php
 
 
-            foreach ($liste  as $colonne => $valeur) {
+            foreach ($liste  as  $valeur) {
             ?>
               <tr>
                 <!-- <th scope="row"><?= $valeur['id'] ?></th> -->
